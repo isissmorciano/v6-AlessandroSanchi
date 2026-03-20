@@ -5,9 +5,9 @@ from app.db import get_db
 def get_all_products():
     db = get_db()
     query = """
-        SELECT p.id, p.nome, p.prezzo, c.categoria_id, c.nome
+        SELECT p.id, p.nome, p.prezzo, p.categoria_id, c.nome
         FROM categorie c
-        Join prodotti p On categorie = categoria_id
+        Join prodotti p On c.id = p.categoria_id
         ORDER BY nome
     """
     categories = db.execute(query).fetchall()
@@ -25,7 +25,7 @@ def get_products_by_category(categoria_id):
     query = """
         SELECT p.id, p.nome, p.prezzo, p.categoria_id, c.nome, c.id
         FROM categorie c
-        Join prodotti p On categorie = c.id
+        Join prodotti p On c.id  = p.categoria_id
         WHERE categoria_id = ?
     """
 
