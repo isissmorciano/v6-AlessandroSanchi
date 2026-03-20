@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Crea nuova partita</h1>
+<form method="post">
+    <label for="data">Data</label>
+    <input name="data" id="data" required>
+    <br><br>
+    <label for="vincitore">Vincitore</label>
+    <input name="vincitore" id="vincitore" required>
+    <br><br>
+    <label for="punteggio_vincitore">Punteggio vincitore</label>
+    <input name="punteggio_vincitore" id="punteggio_vincitore" type="number" required>
+    <br><br>
+    
+    <br><br>
+    <input type="submit" value="Crea Partita">
+</form>
+
+
+
+
+
+
+
+{% endblock %}

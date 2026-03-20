@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Crea nuova categoria</h1>
+<form method="post">
+    <label for="nome">Nome categoria</label>
+    <input name="nome" id="nome" required>
+    <br><br>
+
+    <input type="submit" value="Crea Gioco">
+</form>
+
+
+
+
+<hr>
+<a href="{{ url_for('main.index') }}">Torna alla home</a>
+
+
+{% endblock %}

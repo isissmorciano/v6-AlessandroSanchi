@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for partita in partita %}
+<article>
+    <header>
+        <h2>data: {{ partita['data'] }}</h2>
+        <h2>Vincitore: {{ partita['vincitore'] }}</h2>
+        <h2>Punteggio vincitore: {{ partita['punteggio_vincitore'] }}</h2>
+        <br><br>
+    </header>
+</article>
+{% endfor %}
+
+<hr>
+<a href="{{ url_for('main.index') }}">Torna ai giochi</a>
+{% endblock %}
