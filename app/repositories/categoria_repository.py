@@ -33,7 +33,7 @@ def get_category_by_id(category_id):
 def create_category(nome):
     db = get_db()
     db.execute(
-        "INSERT INTO categorie (nome) VALUES (?)",(nome)
+        "INSERT INTO categorie (nome) VALUES(?)",(nome)
     )
     db.commit()
 

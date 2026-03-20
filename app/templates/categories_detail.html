@@ -9,10 +9,13 @@
     </header>
 </article>
 
-<!---<body>
-    <a href="{{ url_for('main.get_partita', id=game['id']) }}">Partite</a>
-    <a href="{{ url_for('main.partita_create', id = game['id']) }}">Crea Partita</a>
-</body> -->
+<body>
+    <h2>
+        {% for prodotto in prodotti %}
+        {{ prodotti['nome'] }}
+        {% endfor %}
+    </h2>
+</body> 
 <hr>
 <a href="{{ url_for('main.index') }}">Torna alla home</a>
 {% endblock %}

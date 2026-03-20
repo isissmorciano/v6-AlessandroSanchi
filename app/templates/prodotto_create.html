@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Crea nuovo prodotto</h1>
+<form method="post">
+    <label for="categoria_id">categoria_id</label>
+    <input name="categoria_id" id="categoria_id" required>
+    <br><br>
+    <label for="nome">nome</label>
+    <input name="nome" id="nome" required>
+    <br><br>
+    <label for="prezzo"> Prezzo</label>
+    <input name="prezzo" id="prezzo" type="number" required>
+    <br><br>
+    
+    <br><br>
+    <input type="submit" value="Crea prodotto">
+</form>
+
+
+
+
+
+
+
+{% endblock %}

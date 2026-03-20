@@ -17,16 +17,16 @@ def index():
 
 
 @bp.route("/category/<int:id>")
-def category_detail(id):
+def category_detail(id,category_id):
 
     category = categoria_repository.get_category_by_id(id)
+    prodotti = product_repository.get_products_by_category(category_id)
 
-    return render_template("categories_detail.html", category=category)
+    return render_template("categories_detail.html", category=category, prodotti = prodotti)
 
 
 @bp.route("/create", methods=("GET", "POST"))
-def category_create():
-        
+def category_create():     
     if request.method == "POST":
         nome = request.form["nome"]
         error = None
@@ -40,45 +40,32 @@ def category_create():
             categoria_repository.create_category(nome)
             return redirect(url_for("main.index"))
 
-        return render_template("game_create.html")
+        return render_template("category_create.html") 
+    return render_template("category_create.html")       
 
 
-
-
-    return render_template("category_create.html")      
-
-@bp.route("/game<int:id>/partite", methods=("GET", "POST"))
-def get_partita(id):
-    partita = partita_repo.get_partita_by_id(id)
-    if partita is None:
-        abort(404, f"Partita con id {id} non trovata.")
-    return render_template("partita_detail.html", partita=partita)
-
-
-@bp.route("/game<int:id>/partite/create", methods=("GET", "POST"))
-def partita_create(id):
+@bp.route("/crea_prodotto", methods=("GET", "POST"))
+def prodotto_create():
         
     if request.method == "POST":
-        data = request.form["data"]
-        vincitore = request.form["vincitore"]
-        punteggio_vincitore = request.form.get("punteggio_vincitore", 0, type=int)
+        categoria_id = request.form["categoria_id"]
+        nome = request.form["nome"]
+        prezzo = request.form.get("prezzo", 0, type=int)
         error = None
-        game_id = id
 
-        if not data:
+        if not categoria_id:
             error = "La data è obbligatoria."
-        if not vincitore:
+        if not nome:
             error = "Il vincitore è obbligatorio."
-        if not punteggio_vincitore:
+        if not prezzo:
             error = "Il punteggio del vincitore è obbligatorio."
             error = "La categoria è obbligatoria."
 
         if error is not None:
             flash(error)
         else:
-            # Creiamo il gioco
-            partita_repo.create_partita(game_id, data, vincitore, punteggio_vincitore)
+            product_repository.create_product(categoria_id, nome, prezzo)
             return redirect(url_for("main.index"))
 
-        return render_template("partita_create.html")
-    return render_template("partita_create.html")
+        return render_template("prodotto_create.html")
+    return render_template("prodotto_create.html")
